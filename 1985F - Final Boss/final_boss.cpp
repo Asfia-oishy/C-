@@ -36,26 +36,8 @@ int main()
             cout << 1 << endl;
             continue;
         }
-        h -= sum;
-        int turn, attack = 0;
+        
 
-        for (turn = 2; turn <= high; turn++)
-        {
-            attack = 0;
-            for (int j = 0; j < n; j++)
-            {
-                int cnt = (turn - 1) / c[j];
-                if (cnt > 0)
-                {
-                    attack += (cnt * a[j]);
-                }
-            }
-            if (attack >= h)
-            {
-                cout << turn << endl;
-                break;
-            }
-        }
 
     
     }
