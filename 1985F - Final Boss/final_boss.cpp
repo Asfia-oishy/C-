@@ -1,45 +1,54 @@
 #include <bits/stdc++.h>
 using namespace std;
+typedef long long ll;
 
 int main()
 {
-    int t;
+    ll t;
     cin >> t;
     while (t--)
     {
         // first turn on 0th sec
-        int h, n, sum = 0, mini = 1000000000, ind;
+        ll h, n;
         cin >> h >> n;
-        int a[n], c[n]; // attacks and cooldown
-        for (int i = 0; i < n; i++)
+        ll a[n], c[n]; // attacks and cooldown
+        for (ll i = 0; i < n; i++)
         {
             cin >> a[i];
-            sum += a[i];
         }
-        for (int i = 0; i < n; i++)
+        for (ll i = 0; i < n; i++)
         {
             cin >> c[i];
-            if (c[i] < mini)
+        }
+        ll low = 1; // lowest 1 turn
+        ll high = ll(2e12);
+        ll damage, attack;
+        ll mid, turn = high;
+        // initially all are not at coolDown
+ 
+        while (low <= high)
+        {
+            mid = low + (high - low) / 2;
+            damage = 0;
+            for (ll i = 0; i < n; i++)
             {
-                mini = c[i];
-                ind = i;
+                attack = (mid - 1) / c[i]; // here mid means turns.so ith second would be mid-1
+                attack += 1;               // initial one
+                damage += (attack * a[i]);
+                if (damage >= h)
+                    break;
+            }
+            if (damage >= h)
+            {
+                turn = min(turn, mid);
+                high = mid - 1;
+            }
+            else
+            {
+                low = mid + 1;
             }
         }
-        int low = 0; // lowest 1 turn
-        int high = int(h / mini*a[ind]);
-        float damage;
-        int mid = low + (high - low) / 2;
-        // initially all are not at coolDown
-
-        if (sum >= h)
-        {
-            cout << 1 << endl;
-            continue;
-        }
-        
-
-
-    
+        cout << turn << endl;
     }
     return 0;
 }
