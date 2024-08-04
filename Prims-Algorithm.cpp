@@ -4,7 +4,7 @@ using namespace std;
 #define pb push_back
 typedef pair<int, int> p_int;
 typedef pair<int, pair<int, int>> pp_int; //(cost,(v1,v2))
-vector<p_int> graph[100];
+vector<p_int> graph[1000000000];
 int V, E;
 priority_queue<pp_int, vector<pp_int>, greater<pp_int>> pq; // min value is on top
 
