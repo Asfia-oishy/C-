@@ -14,7 +14,7 @@ int main()
         vector<ll> arr(n), maxi = 0, mini = 999999999, minus_sum = 0;
         for (ll i = 0; i < n; i++)
         {
-            int x;
+            int x ;
             cin >> x;
             arr.push_back(x);
             if (arr[i] > maxi)
