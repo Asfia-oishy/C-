@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// two pointers
-
 int main()
 {
     int t;
@@ -10,41 +8,25 @@ int main()
     while (t--)
     {
         int n;
-        cin >> n;
         string s;
-        cin >> s;
-        int l = 0,r=1;
-        bool checked[n - 1];
-        for (int j = 0; j < n - 1; j++)
-        {
-            checked[j] = false;
-        }
-        int op = 0;
-        while (l < n - 1)
-        {
-            if (s[l] == 'A' && s[l + 1] == 'B' && checked[l] == false)
-            {
-                s[l] = 'B';
-                s[l + 1] = 'A';
-                op++;
-                checked[l] = true;
-                if(s[r]=='A' && r<n-1 && s[r+1]=='B')
-                {
-                    s[r]='B';
-                    s[r+1]='A';
-                    checked[r]=true;
-                    op++;
-                }
+        cin >> n >> s;
+        int pta = n, ptb = 0;
 
-                l = 0;
-            }
-            else
+        for (int i = 0; i < n; ++i)
+        {
+            if (s[i] == 'A')
             {
-                l++;
-                r=l+1;
+                pta = min(i, pta);
+            }
+            if (s[i] == 'B')
+            {
+                ptb = max(i, ptb);
             }
         }
-        cout << op << endl;
+        if (pta > ptb)
+            cout << 0 << endl;
+        else
+            cout << ptb - pta << endl;
     }
     return 0;
 }
