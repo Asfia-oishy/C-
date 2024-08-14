@@ -16,7 +16,7 @@ int main()
         }
         for (int i = 0; i < n; i++)
         {
-            p[i] = p[i] - 1; // 2,0,1,4,3
+            p[i] = p[i] - 1; 
         }
         bool flag = false;
 
