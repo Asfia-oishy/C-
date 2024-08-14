@@ -16,32 +16,23 @@ int main()
         }
         for (int i = 0; i < n; i++)
         {
-            p[i]=p[i]-1; //2,0,1,4,3
+            p[i] = p[i] - 1; // 2,0,1,4,3
         }
-        int cnt = n;
-        int bestie, c = 0;
+        bool flag = false;
+
         for (int i = 0; i < n; i++)
         {
-            int invited = i;
-            c++;
-            while (1)
+            int bf = p[i];
+            if (p[bf] == i)
             {
-                int bestie = p[invited];
-                c++;
-
-                if (p[bestie] == i)
-                {
-                    cnt = min(cnt, c);
-                    c = 0;
-                    break;
-                }
-                else
-                {
-                    invited = bestie;
-                }
+                flag = true;
+                break;
             }
         }
-        cout << cnt << endl;
+        if (flag)
+            cout << 2 << endl;
+        else
+            cout << 3 << endl;
     }
     return 0;
 }
