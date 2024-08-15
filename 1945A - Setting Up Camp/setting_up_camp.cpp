@@ -11,76 +11,30 @@ int main()
         cin >> a >> b >> c;
 
         int tents = a;
-        if (b <= 3)
+        int r = b % 3;
+        if (r == 0)
         {
-            if (b == 0)
-            {
-                if (c <= 3 && c > 0)
-                    tents++;
-                else
-                {
-                    tents += (c / 3);
-                    if (c % 3 != 0)
-                        tents++;
-                }
-            }
-            else if (b == 3)
-            {
-                tents++;
-                if (c <= 3 && c > 0)
-                    tents++;
-                else
-                {
-                    tents += (c / 3);
-                    if (c % 3 != 0)
-                        tents++;
-                }
-            }
+            tents += (b / 3);
+            if (c % 3 == 0)
+                tents += (c / 3);
             else
-            {
-                int need = 3 - b;
-                if (c == need)
-                    tents++;
-                else if (c < need)
-                    tents = -1;
-                else
-                {
-                    tents++;
-                    c = c - need;
-                    if (c <= 3 && c > 0)
-                        tents++;
-                    else
-                    {
-                        tents += (c / 3);
-                        if (c % 3 != 0)
-                            tents++;
-                    }
-                }
-            }
+                tents += ((c / 3) + 1);
         }
         else
         {
             tents += (b / 3);
-            if (b % 3 != 0)
+            b = b % 3;
+            int need = 3 - b;
+            if (c < need)
+                tents = -1;
+            else 
             {
-                int need = 3 - (b % 3);
-                if (c == need)
-                    tents++;
-                else if (c < need)
-                    tents = -1;
+                tents++;
+                c=c-need;
+                if(c%3==0)
+                tents+=(c/3);
                 else
-                {
-                    tents++;
-                    c = c - need;
-                    if (c <= 3 && c > 0)
-                        tents++;
-                    else
-                    {
-                        tents += (c / 3);
-                        if (c % 3 != 0)
-                            tents++;
-                    }
-                }
+                tents+=((c/3)+1);
             }
         }
         cout << tents << endl;
