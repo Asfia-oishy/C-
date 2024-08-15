@@ -7,83 +7,83 @@ int main()
     cin >> t;
     while (t--)
     {
-        int a, b, c;
+        int a, b, c, bb, cc;
         cin >> a >> b >> c;
 
         int tents = a;
-        
-
-        if (b < 3)
+        if (b <= 3)
         {
-
-            int extra = 3 - b;
-            if (c < extra)
+            if (b == 0)
             {
-                cout << -1 << endl;
-                continue;
-            }
-            tents++; // for extroverts
-            if (c == extra)
-            {
-                cout << tents << endl;
-                continue;
-            }
-        }
-        else
-        {
-            if (b == 3)
-            {
-                tents++;
-                if (c <= 3)
+                if (c <= 3 && c > 0)
                     tents++;
                 else
                 {
-                    int cc = c / 3;
-                    tents += cc;
-                    tents += (c % 3);
+                    tents += (c / 3);
+                    if (c % 3 != 0)
+                        tents++;
                 }
-                cout << tents << endl;
-                continue;
+            }
+            else if (b == 3)
+            {
+                tents++;
+                if (c <= 3 && c > 0)
+                    tents++;
+                else
+                {
+                    tents += (c / 3);
+                    if (c % 3 != 0)
+                        tents++;
+                }
             }
             else
             {
-                int bb = b / 3;
-                tents += bb;
-                if (c < (b % 3))
-                {
-                    cout << -1 << endl;
-                    continue;
-                }
-                else if (c == (b % 3))
-                {
+                int need = 3 - b;
+                if (c == need)
                     tents++;
-                    cout << tents << endl;
-                    continue;
-                }
+                else if (c < need)
+                    tents = -1;
                 else
                 {
                     tents++;
-                    c = c - (b % 3);
-                    if (c <= 3)
+                    c = c - need;
+                    if (c <= 3 && c > 0)
                         tents++;
                     else
                     {
                         tents += (c / 3);
-                        if (c % 3 == 0)
-                        {
-                            cout << tents << endl;
-                            continue;
-                        }
-                        else
-                        {
+                        if (c % 3 != 0)
                             tents++;
-                            cout << tents << endl;
-                            continue;
-                        }
                     }
                 }
             }
         }
+        else
+        {
+            tents += (b / 3);
+            if (b % 3 != 0)
+            {
+                int need = 3 - (b % 3);
+                if (c == need)
+                    tents++;
+                else if (c < need)
+                    tents = -1;
+                else
+                {
+                    tents++;
+                    c = c - need;
+                    if (c <= 3 && c > 0)
+                        tents++;
+                    else
+                    {
+                        tents += (c / 3);
+                        if (c % 3 != 0)
+                            tents++;
+                    }
+                }
+            }
+        }
+        cout << tents << endl;
     }
     return 0;
 }
