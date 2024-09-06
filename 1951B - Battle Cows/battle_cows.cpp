@@ -31,6 +31,7 @@ bool isPossible(int mid, int k, int arr[], int n)
             break;
         }
     }
+    
 
     for (int i = 1; i <= n; i++)
     {
