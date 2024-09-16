@@ -12,7 +12,7 @@ int find_p(int d, vector<int> par)
         return d;
     else
 
-        return find_p(par[d], par);
+        return pa[d] = find_p(par[d], par);
 }
 void unite(int a, int b, vector<int> &par)
 {
@@ -35,15 +35,14 @@ int main()
     }
 
     // unite
-     for (int i = 0; i < len-1; i++)
+    for (int i = 0; i < len - 1; i++)
     {
-        unite(nodes[i],nodes[i+1], parent);
+        unite(nodes[i], nodes[i + 1], parent);
     }
-
 
     for (int i = 0; i < len; i++)
     {
-        cout << find_p(nodes[i],parent) << " "; //parent of all nodes are same means they are connected in one component
+        cout << find_p(nodes[i], parent) << " "; // parent of all nodes are same means they are connected in one component
     }
 
     return 0;
