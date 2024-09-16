@@ -21,7 +21,7 @@ void unite(int a, int b, vector<int> &par)
     if (root_a == root_b)
         return;
     else
-        par[root_a] = root_b;
+        par[root_b] = root_a;
 }
 int main()
 {
