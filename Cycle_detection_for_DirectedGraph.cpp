@@ -1,22 +1,23 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool dfs(vector<vector<int>> g, int src, vector<bool> &visited, int parent)
+bool dfs(vector<vector<int>> g, int src, vector<bool> &visited,int parent)
 {
     int u = src;
     visited[u] = true;
-
+  
     for (int i = 0; i < g[u].size(); i++)
     {
         int v = g[u][i];
 
-        if (v != parent)
+        if (v !=parent )
         {
-            if (visited[v])
+            if(visited[v])
                 return true;
-            if (dfs(g, v, visited, u))
-                return true;
+            if(dfs(g, v, visited,u))
+             return true;
         }
+
     }
     return false;
 }
@@ -32,25 +33,14 @@ int main()
         int u, v;
         cin >> u >> v;
         g[u].push_back(v); // adding edges
-        g[v].push_back(u);
+
     }
 
     vector<bool> visited(V, false);
-    bool cycle = false;
 
-    for (int i = 0; i < V; i++)
-    {
-        if (!visited[i])
-        {
-            if (dfs(g, 0, visited, -1)) 
-                cycle = true;
-        }
-    }
-    
-    if (cycle) 
+    if (dfs(g, 0, visited,-1)) //took -1 as parent of 0
         cout << "Cycle is present" << endl;
     else
         cout << "There is no cycle in the graph" << endl;
-
     return 0;
 }
