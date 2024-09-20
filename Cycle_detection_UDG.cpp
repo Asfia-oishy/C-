@@ -1,21 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool dfs(vector<vector<int>> g, int src, vector<bool> &visited)
+bool dfs(vector<vector<int>> g, int src, vector<bool> &visited,int parent)
 {
     int u = src;
     visited[u] = true;
-    cout<<u<<" ";
+  
     for (int i = 0; i < g[u].size(); i++)
     {
         int v = g[u][i];
-        if (!visited[v])
+
+        if (v !=parent )
         {
-           
-            dfs(g, v, visited);
+            if(visited[v])
+                return true;
+            if(dfs(g, v, visited,u))
+             return true;
         }
+
     }
-    return true;
+    return false;
 }
 
 int main()
@@ -34,7 +38,7 @@ int main()
 
     vector<bool> visited(V, false);
 
-    if (dfs(g, 0, visited))
+    if (dfs(g, 0, visited,-1)) //took -1 as parent of 0
         cout << "Cycle is present" << endl;
     else
         cout << "There is no cycle in the graph" << endl;
