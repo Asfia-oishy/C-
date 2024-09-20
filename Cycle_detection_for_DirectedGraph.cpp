@@ -1,26 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool dfs(vector<vector<int>> g, int src, vector<bool> &visited, map<int, int> mp)
+bool dfs(vector<vector<int>> g, int src, vector<int> &visited)
 {
     int u = src;
-    visited[u] = true;
-    mp[u]++;
+    visited[u] = 1;
+
 
     for (int i = 0; i < g[u].size(); i++)
     {
         int v = g[u][i];
-        if (!visited[v])
+        if (visited[v]==0)
         {
-            if(dfs(g, v, visited, mp))
+            if(dfs(g, v, visited))
             return true;
         }
-         if (mp[v] == 1)
+         if (visited[v]==1)
         {
             return true;
         }
     }
-    mp[u]--;
+    visited[src]=2;
     return false;
 }
 
@@ -37,16 +37,15 @@ int main()
         g[u].push_back(v); // adding edges
     }
 
-    vector<bool> visited(V, false);
+    vector<int> visited(V, 0);
     bool cycle = false;
-    map<int, int> mp;
+
 
     for (int i = 0; i < V; i++)
     {
-        mp.clear();
         if (!visited[i])
         {
-            if (dfs(g, 0, visited, mp))
+            if (dfs(g, 0, visited))
                 cycle = true;
         }
     }
