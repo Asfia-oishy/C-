@@ -36,21 +36,13 @@ int main()
     }
 
     vector<bool> visited(V, false);
-    bool cycle = false;
-
-    for (int i = 0; i < V; i++)
-    {
-        if (!visited[i])
-        {
-            if (dfs(g, 0, visited, -1)) 
-                cycle = true;
-        }
-    }
     
-    if (cycle) 
+    if (dfs(g, 0, visited,-1)) //took -1 as parent of 0
         cout << "Cycle is present" << endl;
     else
         cout << "There is no cycle in the graph" << endl;
+
+  
 
     return 0;
 }
