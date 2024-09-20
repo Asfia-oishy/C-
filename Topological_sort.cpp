@@ -69,7 +69,7 @@ int main()
     }
 
     if (cycle)
-        cout << "Cycle is present. Topological Sort is not possible" << endl;
+        cout << "Cycle is present. Topological Sort is impossible" << endl;
 
     else
     {
